@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS auth_user (
+  id SERIAL PRIMARY KEY,
+  email VARCHAR(100) UNIQUE NOT NULL,
+  first_name VARCHAR(50),
+  last_name VARCHAR(50),
+  password VARCHAR(255) NOT NULL,
+  createdAt TIMESTAMP DEFAULT NOW(),
+  updatedAt TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE teachers (
+  id SERIAL PRIMARY KEY,
+  user_id INT NOT NULL REFERENCES auth_user(id) ON DELETE CASCADE,
+  university_name VARCHAR(100) NOT NULL,
+  gender VARCHAR(10) NOT NULL,
+  year_joined INT NOT NULL,
+  createdAt TIMESTAMP DEFAULT NOW(),
+  updatedAt TIMESTAMP DEFAULT NOW()
+);
+
